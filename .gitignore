@@ -2,3 +2,6 @@
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/workspace.xml
+11_env/
+__pycache__/
+*.sqlite3
