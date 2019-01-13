@@ -63,8 +63,11 @@ def save_movie():
             f.write(str(i) + movie['name'] + '信息：' + movie['info'] + '\n')
             i += 1
 def insert_into_db(movie_name, detail):
-    sql = "INSERT INTO douban_movie(movie_name, detail) VALUES('%s', '%s')" % (movie_name, detail).encode()
-    db.db_update('test', sql.encode('utf8'))
+    sql_query = "SELECT * from douban_movie where movie_name = '%s'" % movie_name
+    sql = """INSERT INTO douban_movie(movie_name, detail) VALUES('%s', '%s')""" % (movie_name, detail)
+    data = db.db_query('test', sql_query)
+    if data is not None:
+        db.db_update('test', sql)
 
 if __name__ == '__main__':
     get_movie_top_250()
