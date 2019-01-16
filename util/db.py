@@ -48,9 +48,9 @@ def db_update(db, sql):
 
 
 if __name__ == '__main__':
-    sql = "SELECT * from douban_movie where movie_name = 'test1'"
+    sql = "SELECT * from douban_movie where movie_name = 'test'"
     sql1 = "INSERT INTO douban_movie(movie_name, detail) VALUES('测试一下中文', '哈哈')"
 
     # print(db_update('test', sql1))
-    print(db_query('test', sql))
+    print(len(db_query('test', sql)) == 0)
 
