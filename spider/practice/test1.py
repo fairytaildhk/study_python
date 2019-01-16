@@ -12,7 +12,7 @@ def test():
     title = re.compile(pat, re.S).findall(data)
     print(title)
     print(len(data))
-    urllib.request.urlretrieve("http://www.jd.com", filename="jd.htm")
+    urllib.request.urlretrieve("http://www.jd.com", filename="jd.htm")  # 记录到硬盘中
 
 
 def test1():
@@ -30,6 +30,7 @@ def test1():
 
 
 def simulateBrowser():
+    # uas中的元素可以从浏览器中查询user-agent获得
     uas = ["Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36",
            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36 LBBROWSER"]
     opener = urllib.request.build_opener()
