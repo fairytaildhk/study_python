@@ -1,0 +1,35 @@
+class BaseParams:
+    baseParams = {
+        "platformId": "android",
+        "appName": "blackfish",
+        "appType": "2",
+        "appVersion": "2.6.1",
+        "deviceIdSm": "839ea7659b94a217",
+        "deviceName": "MI6",
+        "deviceToken": "1180903062347228",
+        "deviceType": "APP",
+        "fingerPrint": "LEujolO0lReWUitUomKn9InJNxDP5aPb5dhtn5KWmSkFA2O4otlY6FIOqd_maXxb-gshHeZSjjX-VWqaiGiOzDIq9GjaiJyCD6Eq592PmQaaamrgEEqI4jNk6adGpK54I87g2v1k5acp2XAs1CRflrf5C4J4wNBn",
+        "locateAddress": "国展路",
+        "locateCity": "上海市",
+        "locateDistrict": "浦东新区",
+        "locationProvince": "上海市",
+        "memberSign": "vhdFKfNp40v9Cw5giN4B+w==",
+        "network": "WIFI",
+        "networkOperator": "unknown",
+        "os": "android",
+        "osVersion": "7.1.1",
+        "pValue": "11111111111111111",
+        "screenHeight": "1920",
+        "screenResolution": "1080,1920",
+        "serverEnvironment": "sit",
+        "statusBarHeight": "60",
+        "termId": "99001084842330",
+        "termModel": "builderMI6",
+        "termSysVersion": "7.1.1",
+        "wifiMac": "70:d3:79:db:87:4f",
+        "wifiSsid": "BF-Corp",
+        "position": {
+            "lon": "121.486934",
+            "lat": "31.181237"
+        }
+    }

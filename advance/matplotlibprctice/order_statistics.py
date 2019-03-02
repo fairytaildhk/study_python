@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2019/2/21 19:24
+# @Author  : huangkaiding
+from util import DBRequest
+import matplotlib.pyplot as plt
+from pylab import *
+
+
+def record_order(date):
+    query_sql = "SELECT COUNT(*) c FROM hotel_order_detail WHERE create_day = '{date}' AND pay_status = 'Paid'".format(
+        date=date)
+    data = DBRequest.db_query('btc_hos', query_sql)[0]['c']
+    sql = "SELECT COUNT(*) c FROM hotel_order_detail WHERE create_day = '{date}'".format(date=date)
+    order_num = DBRequest.db_query('btc_hos', sql)[0]['c']
+    print(data)
+    insert_sql = "INSERT INTO order_statistics(`date`, `order_paid_count`, `order_num`) VALUES('{date}', {order_paid_count}, {order_num})".format(
+        date=date, order_paid_count=data, order_num=order_num)
+    DBRequest.db_update('test', insert_sql)
+
+
+def query_order_num():
+    query_sql = "SELECT * FROM order_statistics"
+    datas = DBRequest.db_query('test', query_sql)
+    date_list = []
+    order_paid_count_list = []
+    order_num_list = []
+    for data in datas:
+        date_list.append(data['date'])
+        order_paid_count_list.append(data['order_paid_count'])
+        order_num_list.append(data['order_num'])
+
+    print(date_list)
+    print(order_paid_count_list)
+    print(order_num_list)
+    return date_list, order_paid_count_list, order_num_list
+
+
+def paint():
+    date_list, order_paid_count_list, order_num_list = query_order_num()
+    fig, ax = plt.subplots(figsize=(18, 10))
+    fig.autofmt_xdate()
+    ax.plot(date_list, order_paid_count_list, 'o-', linewidth=3, label='已支付订单')
+    ax.plot(date_list, order_num_list, 'o-', linewidth=3, label='所有订单')
+    ax.legend(fontsize=30, loc="upper left")
+    plt.title("订单量统计", fontsize=24)
+    plt.xlabel("日期", fontsize=16)
+    plt.ylabel("订单量", fontsize=16)
+    ax.tick_params(axis='both', labelsize=18)
+    # for a, b in zip(date_list, order_paid_count_list):
+    #     ax.text(a, b, b, ha='center', va='bottom', fontsize=20)
+    for i in range(len(date_list)):
+        ax.text(date_list[i], order_paid_count_list[i], order_paid_count_list[i], ha='center', va='bottom', fontsize=20)
+        ax.text(date_list[i], order_num_list[i], order_num_list[i], ha='center', va='bottom', fontsize=20)
+    plt.show()
+
+def timing_task():
+    pass
+
+
+if __name__ == '__main__':
+    # date_list, order_paid_count_list, order_num_list = query_order_num()
+    paint()
