@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/2/21 19:24
 # @Author  : huangkaiding
+import json
+
 from util import DBRequest
 import matplotlib.pyplot as plt
 from pylab import *
@@ -59,4 +61,8 @@ def timing_task():
 
 if __name__ == '__main__':
     # date_list, order_paid_count_list, order_num_list = query_order_num()
-    paint()
+    # paint()
+    a = {"s": "s",
+             "q": "q", }
+    a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
+    print(a_json)
