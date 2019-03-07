@@ -6,7 +6,7 @@ import json
 from util import DBRequest
 import matplotlib.pyplot as plt
 from pylab import *
-
+from matplotlib.font_manager import _rebuild
 
 def record_order(date):
     query_sql = "SELECT COUNT(*) c FROM hotel_order_detail WHERE create_day = '{date}' AND pay_status = 'Paid'".format(
@@ -39,6 +39,8 @@ def query_order_num():
 
 def paint():
     date_list, order_paid_count_list, order_num_list = query_order_num()
+    # plt.rcParams['font.sans-serif'] = ['SimHei']
+    # plt.rcParams['font.family'] = 'sans-serif'
     fig, ax = plt.subplots(figsize=(18, 10))
     fig.autofmt_xdate()
     ax.plot(date_list, order_paid_count_list, 'o-', linewidth=3, label='已支付订单')
@@ -60,9 +62,11 @@ def timing_task():
 
 
 if __name__ == '__main__':
+    # _rebuild()
     # date_list, order_paid_count_list, order_num_list = query_order_num()
     # paint()
     a = {"s": "s",
              "q": "q", }
     a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
     print(a_json)
+
