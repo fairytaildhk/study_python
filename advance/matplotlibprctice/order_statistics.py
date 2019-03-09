@@ -3,12 +3,13 @@
 # @Author  : huangkaiding
 import json
 
-from util import DBRequest
+from util import DBRequest, mail
 import matplotlib.pyplot as plt
 from pylab import *
 from matplotlib.font_manager import _rebuild
 
 def record_order(date):
+    """根据日期查询订单数，记录数据到本地数据库"""
     query_sql = "SELECT COUNT(*) c FROM hotel_order_detail WHERE create_day = '{date}' AND pay_status = 'Paid'".format(
         date=date)
     data = DBRequest.db_query('btc_hos', query_sql)[0]['c']
@@ -21,6 +22,7 @@ def record_order(date):
 
 
 def query_order_num():
+    """查询本地数据库的订单数据"""
     query_sql = "SELECT * FROM order_statistics"
     datas = DBRequest.db_query('test', query_sql)
     date_list = []
@@ -38,6 +40,7 @@ def query_order_num():
 
 
 def paint():
+    """画折线图"""
     date_list, order_paid_count_list, order_num_list = query_order_num()
     # plt.rcParams['font.sans-serif'] = ['SimHei']
     # plt.rcParams['font.family'] = 'sans-serif'
@@ -55,16 +58,29 @@ def paint():
     for i in range(len(date_list)):
         ax.text(date_list[i], order_paid_count_list[i], order_paid_count_list[i], ha='center', va='bottom', fontsize=20)
         ax.text(date_list[i], order_num_list[i], order_num_list[i], ha='center', va='bottom', fontsize=20)
+    plt.savefig('order.png')
     plt.show()
 
+
 def timing_task():
+    """定时任务"""
     pass
 
+def send_mail():
+    """发邮件"""
+    mail.sendMail()
+
+
+
+def main():
+    """程序执行入口"""
+    paint()
+    send_mail()
 
 if __name__ == '__main__':
     # _rebuild()
     # date_list, order_paid_count_list, order_num_list = query_order_num()
-    # paint()
+    paint()
     a = {"s": "s",
              "q": "q", }
     a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
