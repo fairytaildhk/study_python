@@ -3,10 +3,15 @@
 # @Author  : huangkaiding
 import json
 
-from util import DBRequest, mail
+import schedule as schedule
+
+from util import DBRequest, mail, DateTimeUtil
 import matplotlib.pyplot as plt
 from pylab import *
 from matplotlib.font_manager import _rebuild
+import time as t
+import datetime as dt
+
 
 def record_order(date):
     """根据日期查询订单数，记录数据到本地数据库"""
@@ -64,25 +69,40 @@ def paint():
 
 def timing_task():
     """定时任务"""
-    pass
+    print("定时任务开启")
+
+    # schedule.every(3).minutes.do(main)
+    # schedule.every(10).minutes.do(job)
+    # schedule.every().hour.do(job)
+    schedule.every().day.at("08:00").do(main)
+    # schedule.every(5).to(10).days.do(job)
+    # schedule.every().monday.do(job)
+    # schedule.every().wednesday.at("13:15").do(job)
+
+    while True:
+        schedule.run_pending()
+        t.sleep(1)
+
 
 def send_mail():
     """发邮件"""
     mail.sendMail()
 
 
-
 def main():
     """程序执行入口"""
+    date = DateTimeUtil.getFutureDateTime(-1)
+    record_order(date)
     paint()
     send_mail()
+
 
 if __name__ == '__main__':
     # _rebuild()
     # date_list, order_paid_count_list, order_num_list = query_order_num()
-    paint()
-    a = {"s": "s",
-             "q": "q", }
-    a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
-    print(a_json)
-
+    # paint()
+    # a = {"s": "s",
+    #          "q": "q", }
+    # a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
+    # print(a_json)
+    timing_task()

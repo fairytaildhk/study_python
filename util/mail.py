@@ -11,18 +11,16 @@ from email.header import Header
 def sendMail():
     mail_host = 'mail.blackfish.cn'
     name = "btctest"
-    password = "1qaz@WSX"
+    password = "2wsx#EDC"
 
     sender = 'btctest@blackfish.cn'
     receivers = ['huangkaiding@blackfish.cn',
                  'skyeli@blackfish.cn',
                  'huaishengsong@blackfish.cn',
                  'lukazhou@blackfish.cn',
-                 'qizhang@blackfish.cn',
-                 'stonerchen@blackfish.cn',
-                 'verasun@blackfish.cn',
-                 'binchengzhang@blackfish.cn']
-    # ['zaneyao@blackfish.cn']
+                 'lilianli@blackfish.cn',
+                 ]
+    # ['lilianli@blackfish.cn']
 
     msgRoot = MIMEMultipart('related')
     msgRoot['From'] = Header("凯哥给你发邮件了", 'utf-8')  # 发送者
