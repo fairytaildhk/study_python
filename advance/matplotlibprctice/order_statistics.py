@@ -28,8 +28,9 @@ def record_order(date):
 
 def query_order_num():
     """查询本地数据库的订单数据"""
-    query_sql = "SELECT * FROM order_statistics"
-    datas = DBRequest.db_query('test', query_sql)
+    query_sql = "SELECT * FROM order_statistics ORDER BY date desc LIMIT 30"
+    datas_db = DBRequest.db_query('test', query_sql)
+    datas = list(reversed(datas_db))
     date_list = []
     order_paid_count_list = []
     order_num_list = []
@@ -53,7 +54,7 @@ def paint():
     fig.autofmt_xdate()
     ax.plot(date_list, order_paid_count_list, 'o-', linewidth=3, label='已支付订单')
     ax.plot(date_list, order_num_list, 'o-', linewidth=3, label='所有订单')
-    ax.legend(fontsize=30, loc="upper left")
+    ax.legend(fontsize=20, loc="upper right")
     plt.title("订单量统计", fontsize=24)
     plt.xlabel("日期", fontsize=16)
     plt.ylabel("订单量", fontsize=16)
@@ -106,3 +107,4 @@ if __name__ == '__main__':
     # a_json = json.dumps(a, sort_keys=True, indent=4, separators=(',', ':'), skipkeys=False)
     # print(a_json)
     timing_task()
+    # main()

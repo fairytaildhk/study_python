@@ -19,8 +19,13 @@ def sendMail():
                  'huaishengsong@blackfish.cn',
                  'lukazhou@blackfish.cn',
                  'lilianli@blackfish.cn',
+                 'yogashu@blackfish.cn',
+                 'zaneyao@blackfish.cn',
+                 'jasonchen@blackfish.cn',
+                 'maggiema@blackfish.cn',
                  ]
-    # ['lilianli@blackfish.cn']
+    # receivers = ['maggiema@blackfish.cn',
+    #              'huangkaiding@blackfish.cn',]
 
     msgRoot = MIMEMultipart('related')
     msgRoot['From'] = Header("凯哥给你发邮件了", 'utf-8')  # 发送者
