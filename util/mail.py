@@ -15,7 +15,6 @@ def sendMail():
 
     sender = 'btctest@blackfish.cn'
     receivers = ['huangkaiding@blackfish.cn',
-                 'skyeli@blackfish.cn',
                  'huaishengsong@blackfish.cn',
                  'lukazhou@blackfish.cn',
                  'lilianli@blackfish.cn',
@@ -23,9 +22,12 @@ def sendMail():
                  'zaneyao@blackfish.cn',
                  'jasonchen@blackfish.cn',
                  'maggiema@blackfish.cn',
+                 'xiaoyingwu@blackfish.cn',
+                 'binchengzhang@blackfish.cn',
+                 'v-tannerwang@blackfish.cn',
                  ]
-    # receivers = ['maggiema@blackfish.cn',
-    #              'huangkaiding@blackfish.cn',]
+    # receivers = ['xiaoyingwu@blackfish.cn',
+    #              'binchengzhang@blackfish.cn',]
 
     msgRoot = MIMEMultipart('related')
     msgRoot['From'] = Header("凯哥给你发邮件了", 'utf-8')  # 发送者
@@ -38,8 +40,27 @@ def sendMail():
     msgRoot.attach(msgAlternative)
     # 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码
     mail_msg = """
-    <p><a href="https://github.com/fairytaildhk">给凯哥的github项目点个star</a></p>
-    <p>订单统计图：</p>
+    <h2 align="left">给凯哥的github项目点个star，关注一下凯哥的博客呀！！！</h2>
+    <p>(提示：点击图片即可)</p>
+
+    <p align="left">
+        <p>凯哥的gitHub</p>
+        <a href="https://github.com/fairytaildhk">
+            <img border="0" src="cid:image3" width="120" height="60" align ="">
+        </a>
+        <p>凯哥的博客</p>
+         <a href="https://blog.csdn.net/weixin_41576586">
+            <img border="0" src="cid:image2" width="120" height="60">
+         </a>
+  </p>
+  <!--<h2>凯哥的博客</h2>-->
+  <!--<p align="left">-->
+    <!--<a href="https://blog.csdn.net/weixin_41576586">-->
+      <!--<img border="0" src="logo.png" width="120" height="60">-->
+    <!--</a>-->
+  <!--</p>-->
+  <hr/>
+  <h1 align="left" style="font-family:arial;color:#4e6eff;font-size:20px;">订单统计图：</h1>
     <p><img src="cid:image1"></p>
     """
     msgAlternative.attach(MIMEText(mail_msg, 'html', 'utf-8'))
@@ -52,6 +73,20 @@ def sendMail():
     # 定义图片 ID，在 HTML 文本中引用
     msgImage.add_header('Content-ID', '<image1>')
     msgRoot.attach(msgImage)
+
+    # 图片logo
+    fp1 = open('logo.png', 'rb')
+    msgImage1 = MIMEImage(fp1.read())
+    fp1.close()
+    msgImage1.add_header('Content-ID', '<image2>')
+    msgRoot.attach(msgImage1)
+
+    # 图片marvellogo
+    fp2 = open('marvellog.jpg', 'rb')
+    msgImage2 = MIMEImage(fp2.read())
+    fp2.close()
+    msgImage2.add_header('Content-ID', '<image3>')
+    msgRoot.attach(msgImage2)
 
     try:
         smtp = smtplib.SMTP(host=mail_host, port=587)
