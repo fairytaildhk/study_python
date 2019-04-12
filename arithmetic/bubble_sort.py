@@ -65,7 +65,7 @@ def bubble_sort_3(a_list):
 if __name__ == '__main__':
     # a = [3, 6, 415, 1, 78, 9, 65]
     c = list(range(50000))
-    a = random.sample(c, 1000)
+    a = random.sample(c, 10000)
     # print(a)
     for i in range(5):
         print('='*20)
