@@ -5,17 +5,7 @@ import logging
 import random
 
 
-def even():
-    """求100（包含100）以内的偶数"""
-    ev = [i for i in range(100) if i % 2 == 0]
-    logging.basicConfig(level=logging.NOTSET)
-    logging.info(ev)
-    # print(ev)
 
-
-def convergence(a, b):
-    if a - b < 2:
-        return "a和b收敛于2"
 
 if __name__ == '__main__':
     a_list = [i for i in range(10)]
@@ -45,4 +35,4 @@ if __name__ == '__main__':
     phonebook1 = {'ann': 6575, 'bob': 8982, 'joe': 2598, 'zoe': 1225}
     print(phonebook1.items())
 
-    even()
+
