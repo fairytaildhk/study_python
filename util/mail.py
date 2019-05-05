@@ -8,26 +8,11 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 
-def sendMail():
-    mail_host = 'mail.blackfish.cn'
-    name = "btctest"
-    password = "2wsx#EDC"
+def sendMail(mail_host, name, password, sender):
 
-    sender = 'btctest@blackfish.cn'
-    receivers = ['huangkaiding@blackfish.cn',
-                 'huaishengsong@blackfish.cn',
-                 'lukazhou@blackfish.cn',
-                 'lilianli@blackfish.cn',
-                 'yogashu@blackfish.cn',
-                 'zaneyao@blackfish.cn',
-                 'jasonchen@blackfish.cn',
-                 'maggiema@blackfish.cn',
-                 'xiaoyingwu@blackfish.cn',
-                 'binchengzhang@blackfish.cn',
-                 'v-tannerwang@blackfish.cn',
-                 ]
-    # receivers = ['xiaoyingwu@blackfish.cn',
-    #              'binchengzhang@blackfish.cn',]
+    receivers = []
+    # receivers = ['xxxx@qq.com',
+    #              'xxxx@qq.com',]
 
     msgRoot = MIMEMultipart('related')
     msgRoot['From'] = Header("凯哥给你发邮件了", 'utf-8')  # 发送者
@@ -101,5 +86,4 @@ def sendMail():
         print("Error: 无法发送邮件")
 
 
-if __name__ == '__main__':
-    sendMail()
+
